@@ -99,7 +99,7 @@ $function = function() {
     /** @var \DirectoryIterator $fileinfo */
     foreach ($directory as $file) {
         if (!$file->isDot() && $file->isDir()) {
-            $args = ' archive --format=zip --dir="'.$projectPath.'/tests/FullStackTest/artifact" -vvv';
+            $args = ' archive --format=zip --dir="tests/FullStackTest/artifact" -vvv';
             $process = new Process(
                 $composerCommand . $args,
                 $file->getPathname()
