@@ -7,7 +7,7 @@ use Symfony\Component\Process\Process;
 echo "Artifact Generation started".PHP_EOL;
 
 $function = function() {
-    $projectPath = realpath(__DIR__ . '/../');
+    $projectPath = str_replace('\\', '/', realpath(__DIR__ . '/../'));
 
     $packagesPath = $projectPath . '/tests/res/packages';
     
@@ -22,7 +22,7 @@ $function = function() {
     if (getenv('TRAVIS') == "true") {
         $composerCommand = $projectPath . '/composer.phar';
     } elseif (getenv('APPVEYOR') == 'True') {
-        $composerCommand = 'php composer.phar';
+        $composerCommand = 'php ' . $projectPath . '/composer.phar';
     } elseif ($runInProjectRoot('./composer.phar')->getExitCode() === 0) {
         $composerCommand = 'composer.phar';
     }
