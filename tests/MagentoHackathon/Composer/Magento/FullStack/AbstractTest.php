@@ -33,12 +33,15 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
     private static function resolveComposerCommand()
     {
         if (getenv('TRAVIS') == "true") {
-            $command = self::getProjectRoot().'/composer.phar';
+            $command = self::getProjectRoot() . '/composer.phar';
+        } elseif (getenv('APPVEYOR') == 'true') {
+            $command = 'php composer.phar';
         } elseif (self::runInProjectRoot('./composer.phar --version')->getExitCode() === 0) {
             $command = 'composer.phar';
         } else {
             $command = 'composer';
         }
+        var_dump(getenv('APPVEYOR'));
 
         return $command;
     }
