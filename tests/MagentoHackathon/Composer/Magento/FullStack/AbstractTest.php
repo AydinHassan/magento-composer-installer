@@ -22,12 +22,12 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 
     protected static function getBasePath()
     {
-        return realpath(__DIR__.'/../../../../FullStackTest');
+        return str_replace('\\', '/', realpath(__DIR__.'/../../../../FullStackTest'));
     }
 
     protected static function getProjectRoot()
     {
-        return realpath(__DIR__.'/../../../../..');
+        return str_replace('\\', '/', realpath(__DIR__.'/../../../../..'));
     }
 
     private static function resolveComposerCommand()
