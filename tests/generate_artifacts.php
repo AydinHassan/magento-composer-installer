@@ -13,6 +13,7 @@ $function = function() {
     
     $runInProjectRoot = function ($command) use ($projectPath) {
         $process = new Process($command, $projectPath);
+        $process->setTimeout(120);
         $process->run();
         return $process;
     };
@@ -104,6 +105,7 @@ $function = function() {
                 $composerCommand . $args,
                 $file->getPathname()
             );
+            $process->setTimeout(120);
             $process->run();
             if ($process->getExitCode() !== 0) {
                 $message = sprintf(
